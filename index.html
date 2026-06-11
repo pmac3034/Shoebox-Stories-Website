@@ -7,169 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,800;0,900;1,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    /* ─── Reset & Base ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --warm-white:   #FEFCFA;
-      --brown:        #3D2B1F;
-      --brown-light:  #6B4C3B;
-      --blush:        #F2BBAD;
-      --blush-dark:   #F0A896;
-      --powder-blue:  #B8D4E8;
-      --powder-dark:  #A3C6DE;
-      --sand:         #E8D5C0;
-      --dark-navy:    #2C3E50;
-      --footer-bg:    #2A1F18;
-      --gray-text:    #7A6B62;
-      --coral-label:  #C97A66;
-      --blue-label:   #4A87AD;
-      --off-white:    #FFF5EE;
-      --shadow-warm:  rgba(61,43,31,0.12);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--warm-white);
-      color: var(--brown);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    /* ─── Nav ───────────────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: 64px;
-      background: var(--warm-white);
-      border-bottom: 1.5px solid var(--sand);
-      display: flex;
-      align-items: center;
-      padding: 0 60px;
-      gap: 40px;
-    }
-
-    .nav-logo {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--brown);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      flex: 1;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 15px;
-      color: var(--brown);
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .nav-links a:hover { opacity: 0.6; }
-
-    .btn-nav {
-      margin-left: auto;
-      background: var(--blush);
-      color: var(--brown);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 10px 26px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(242,187,173,0.5);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-nav:hover {
-      background: var(--blush-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(242,187,173,0.6);
-    }
-
-    @media (max-width: 767px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-    }
-
-    /* ─── Buttons ───────────────────────────────────────────────── */
-    .btn-primary {
-      display: inline-block;
-      background: var(--blush);
-      color: var(--brown);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-      padding: 17px 48px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 16px rgba(242,187,173,0.5);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--blush-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(242,187,173,0.65);
-    }
-
-    .btn-secondary {
-      display: inline-block;
-      background: var(--powder-blue);
-      color: var(--brown);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-      padding: 17px 48px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 16px rgba(184,212,232,0.5);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-secondary:hover {
-      background: var(--powder-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(184,212,232,0.6);
-    }
-
-    /* ─── Section Labels ────────────────────────────────────────── */
-    .label {
-      display: inline-block;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.20em;
-      padding: 6px 18px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-    }
-
-    .label-blush   { background: var(--blush); color: var(--coral-label); }
-    .label-blue    { background: var(--powder-blue); color: var(--blue-label); }
-    .label-dark    { background: rgba(255,255,255,0.12); color: var(--off-white); border: 1px solid rgba(255,255,255,0.2); }
-    .label-navy    { background: rgba(184,212,232,0.18); color: var(--powder-blue); }
+    /* ─── index.html page-specific styles ──────────────────────── */
 
     /* ─── Hero ──────────────────────────────────────────────────── */
     #hero {
@@ -508,16 +348,6 @@
       gap: 8px;
     }
 
-    .badge {
-      background: var(--powder-blue);
-      color: var(--brown);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      padding: 5px 14px;
-      border-radius: 999px;
-    }
 
     @media (max-width: 860px) {
       .digitize-grid { grid-template-columns: 1fr; }
@@ -620,40 +450,41 @@
     }
 
     .before-after {
-      display: grid;
-      grid-template-columns: 1fr 3px 1fr;
+      position: relative;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 12px 48px rgba(61,43,31,0.15);
-      height: 280px;
+      height: 300px;
+    }
+
+    /* ── Slides ── */
+    .ba-slide {
+      display: none;
+      grid-template-columns: 1fr 3px 1fr;
+      width: 100%;
+      height: 100%;
+    }
+    .ba-slide.ba-active {
+      display: grid;
     }
 
     .ba-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
       position: relative;
+      overflow: hidden;
+    }
+    .ba-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
-    .ba-before {
-      background: repeating-linear-gradient(
-        45deg,
-        #C8A98A 0px, #C8A98A 2px,
-        #D4B896 2px, #D4B896 12px
-      );
-    }
-
-    .ba-after {
-      background: linear-gradient(135deg, #FFF5EE 0%, #F5E6D4 100%);
-    }
-
-    .ba-divider { background: #fff; }
+    .ba-divider { background: #fff; flex-shrink: 0; }
 
     .ba-label {
       position: absolute;
-      top: 16px;
+      top: 14px;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Nunito', sans-serif;
@@ -663,23 +494,119 @@
       letter-spacing: 0.18em;
       padding: 5px 14px;
       border-radius: 999px;
+      white-space: nowrap;
+      z-index: 2;
     }
-
     .ba-before .ba-label {
-      background: rgba(61,43,31,0.5);
-      color: var(--off-white);
+      background: rgba(30,20,12,0.55);
+      color: #fff;
     }
-
     .ba-after .ba-label {
-      background: rgba(61,43,31,0.12);
+      background: rgba(255,255,255,0.75);
       color: var(--brown);
     }
 
-    .ba-icon {
-      font-size: 52px;
-      opacity: 0.35;
+    /* ── Arrow buttons ── */
+    .ba-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.88);
+      color: var(--brown);
+      font-size: 22px;
       line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(61,43,31,0.18);
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
     }
+    .ba-arrow:hover {
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(61,43,31,0.24);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .ba-arrow-prev { left: 12px; }
+    .ba-arrow-next { right: 12px; }
+
+    /* ── Dot indicators ── */
+    .ba-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 10;
+    }
+    .ba-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .ba-dot.ba-dot-active {
+      background: #fff;
+      transform: scale(1.25);
+    }
+
+    /* ── Photo lightbox ── */
+    .ba-panel img { cursor: zoom-in; }
+
+    #baLightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(30, 20, 12, 0.88);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    #baLightbox.lb-open { display: flex; }
+
+    #baLightbox img {
+      max-width: min(90vw, 960px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+      cursor: default;
+      animation: lbFadeIn 0.18s ease;
+    }
+    @keyframes lbFadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    #baLightboxClose {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    #baLightboxClose:hover { background: rgba(255,255,255,0.28); }
 
     .spec-pills {
       display: flex;
@@ -820,73 +747,6 @@
 
     .cta-faq:hover { color: var(--off-white); }
 
-    /* ─── Footer ────────────────────────────────────────────────── */
-    footer {
-      background: var(--footer-bg);
-      padding: 56px 60px 40px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .footer-logo {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--off-white);
-      text-decoration: none;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      list-style: none;
-    }
-
-    .footer-links a {
-      font-size: 15px;
-      color: rgba(255,245,238,0.6);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--off-white); }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-bottom p, .footer-bottom a {
-      font-size: 13px;
-      color: rgba(255,245,238,0.4);
-      text-decoration: none;
-    }
-
-    .footer-bottom a:hover { color: rgba(255,245,238,0.7); }
-
-    @media (max-width: 600px) {
-      footer { padding: 48px 24px 36px; }
-      .footer-top { flex-direction: column; gap: 24px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-    }
   </style>
 </head>
 <body>
@@ -899,25 +759,25 @@
       <li><a href="#what-we-scan">What We Scan</a></li>
       <li><a href="#quality">Quality</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="faq.html">FAQ</a></li>
     </ul>
-    <a href="schedule.html" class="btn-nav">Get Started</a>
+    <a href="pricing.html#calculator" class="btn-nav">Get Started</a>
   </nav>
 
   <!-- ─── Hero ───────────────────────────────────────────────────── -->
   <section id="hero">
     <span class="label label-blush">Mail-In Photo Digitization</span>
     <h1>Your family's memories,<br>saved forever.</h1>
-    <p>Ship us your old photos, slides, negatives, and home videos. We scan, enhance, and deliver high-resolution digital files — then return every original, insured and tracked.</p>
+    <p>Get us your old photos. We scan, enhance, and deliver high-resolution digital files and return every original</p>
     <div class="hero-btns">
-      <a href="schedule.html" class="btn-primary">Start Scanning</a>
+      <a href="pricing.html#calculator" class="btn-primary">Start Scanning</a>
       <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
     <div class="photo-frames">
-      <div class="frame"><img src="landing%20page%20imgs/6.jpg"  alt="Family photo" /></div>
-      <div class="frame"><img src="landing%20page%20imgs/3.jpg"  alt="Family photo" /></div>
-      <div class="frame"><img src="landing%20page%20imgs/2.JPG"  alt="Family photo" /></div>
-      <div class="frame"><img src="landing%20page%20imgs/4.JPG"  alt="Family photo" /></div>
+      <div class="frame"><img src="landing_page_imgs/6.jpg"  alt="Family photo" /></div>
+      <div class="frame"><img src="landing_page_imgs/3.jpg"  alt="Family photo" /></div>
+      <div class="frame"><img src="landing_page_imgs/2.JPG"  alt="Family photo" /></div>
+      <div class="frame"><img src="landing_page_imgs/4.JPG"  alt="Family photo" /></div>
     </div>
   </section>
 
@@ -949,7 +809,7 @@
         <h2>The photos in that shoebox deserve better.</h2>
         <p>Every year, thousands of family photos fade, warp, or are lost to water, fire, and time. The images that capture your parents' wedding, your first birthday, your grandparents' faces — there are no second chances once they're gone.</p>
         <p>Shoebox Stories exists to make sure that never happens to your family. We treat every order as if it were our own family's photos — because we know exactly what's at stake.</p>
-        <p>Ship us your collection. We handle everything else, and return every original to your door.</p>
+        <p>Set up an appointment with us! We handle everything else, and return every original to your door.</p>
       </div>
       <div>
         <p class="mission-quote">"What if something happened to those photos?" — that fear ends today.</p>
@@ -966,26 +826,27 @@
       <div class="step-card">
         <div class="step-num">Step 01</div>
         <span class="step-emoji">📬</span>
-        <h3>Ship Your Photos</h3>
-        <p>Pack up your photos, slides, negatives, or tapes and send them to us using your own shipping or our prepaid label. No drop-off required.</p>
+        <h3>Set up a Pickup/Dropoff</h3>
+        <p>Pack up your photos and set up an appointment with us!</p>
       </div>
       <div class="step-card">
         <div class="step-num">Step 02</div>
         <span class="step-emoji">🔬</span>
         <h3>We Scan &amp; Enhance</h3>
-        <p>Our team professionally scans every item at high resolution, then applies color correction, AI sharpening, and dust removal. A human reviews every scan.</p>
+        <p>Our team professionally scans every item at high resolution, then applies color correction, AI sharpening, and dust removal. We manually review every scan to make sure your memories are preserved just right.</p>
       </div>
       <div class="step-card">
         <div class="step-num">Step 03</div>
         <span class="step-emoji">🎉</span>
         <h3>Get Your Memories</h3>
-        <p>You receive a secure private download link with your digital files organized into folders. Your originals are returned to you, insured and tracked.</p>
+        <p>You receive a secure private download link with your digital files organized into folders. Then we will set up a time to get your originals back to you!</p>
       </div>
     </div>
   </section>
 
   <!-- ─── What We Digitize ──────────────────────────────────────── -->
-  <section id="what-we-scan">
+   <!-- Commented out until service types expanded -->
+  <!-- <section id="what-we-scan">
     <span class="label label-blush">Media Types</span>
     <h2>What We Scan</h2>
     <p class="section-sub">From vintage slides to home movies, we handle every format with care.</p>
@@ -1035,7 +896,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ─── What's Included ───────────────────────────────────────── -->
   <section id="pricing">
@@ -1081,7 +942,7 @@
       <div class="included-item">
         <span class="i-emoji">📦</span>
         <h4>Originals Returned</h4>
-        <p>Every original item packaged and returned to your door, insured and tracked.</p>
+        <p>Every original item packaged and returned to you. We treat your photos like our own!</p>
       </div>
       <div class="included-item">
         <span class="i-emoji">👁️</span>
@@ -1098,16 +959,42 @@
       <div>
         <span class="label label-blush">Scan Quality</span>
         <h2>Professional results that speak for themselves.</h2>
-        <div class="before-after">
-          <div class="ba-panel ba-before">
-            <span class="ba-label">Before</span>
-            <span class="ba-icon">🖼️</span>
+        <div class="before-after" id="baCarousel">
+
+          <!-- Example 1 -->
+          <div class="ba-slide ba-active">
+            <div class="ba-panel ba-before">
+              <span class="ba-label">Before</span>
+              <img src="landing_page_imgs/before1.jpg" alt="Original photo before scanning" />
+            </div>
+            <div class="ba-divider"></div>
+            <div class="ba-panel ba-after">
+              <span class="ba-label">After</span>
+              <img src="landing_page_imgs/after1.jpg" alt="Digitized and enhanced scan" />
+            </div>
           </div>
-          <div class="ba-divider"></div>
-          <div class="ba-panel ba-after">
-            <span class="ba-label">After</span>
-            <span class="ba-icon">🖼️</span>
+
+          <!-- Example 2 -->
+          <div class="ba-slide">
+            <div class="ba-panel ba-before">
+              <span class="ba-label">Before</span>
+              <img src="landing_page_imgs/before2.jpg" alt="Original photo before scanning" />
+            </div>
+            <div class="ba-divider"></div>
+            <div class="ba-panel ba-after">
+              <span class="ba-label">After</span>
+              <img src="landing_page_imgs/after2.jpg" alt="Digitized and enhanced scan" />
+            </div>
           </div>
+
+          <!-- Controls -->
+          <button class="ba-arrow ba-arrow-prev" aria-label="Previous example">&#8249;</button>
+          <button class="ba-arrow ba-arrow-next" aria-label="Next example">&#8250;</button>
+          <div class="ba-dots">
+            <span class="ba-dot ba-dot-active" data-index="0"></span>
+            <span class="ba-dot" data-index="1"></span>
+          </div>
+
         </div>
         <div class="spec-pills">
           <span class="badge">600 DPI</span>
@@ -1122,7 +1009,7 @@
             <div class="q-num">1</div>
             <div class="q-text">
               <h4>High-Resolution Scan</h4>
-              <p>Photos scanned at 600 DPI; slides and negatives at 4,000 DPI — enough detail to make large prints.</p>
+              <p>Photos scanned at 600 DPI</p>
             </div>
           </div>
           <div class="quality-step">
@@ -1155,10 +1042,10 @@
   <section id="testimonial">
     <div class="testimonial-card">
       <div class="stars">⭐⭐⭐⭐⭐</div>
-      <blockquote>"I honestly cried when I opened my download link. Photos I hadn't seen since childhood, looking better than I ever remembered them. Worth every penny and then some."</blockquote>
+      <blockquote>"It's been amazing seeing photos from decades ago finally at my fingertips. It's allowed me to revisit so many cherished memories"</blockquote>
       <div class="attribution">
-        <strong>Margaret T.</strong>
-        Customer since 2023 · 340 photos scanned
+        <strong>Lee M.</strong>
+        Customer since 2026 · 7,450 photos scanned
       </div>
     </div>
   </section>
@@ -1168,12 +1055,9 @@
     <span class="label label-dark">Get Started Today</span>
     <h2>Handled like our own family's<br>photos — every single time.</h2>
     <p>Your memories are irreplaceable. Don't wait for the day something happens to them. Start your order today and we'll take it from here.</p>
-    <a href="schedule.html" class="btn-primary">Start Your Order</a>
-    <a href="#faq" class="cta-faq">Have questions? Visit our FAQ →</a>
+    <a href="pricing.html#calculator" class="btn-primary">Start Your Order</a>
+    <a href="faq.html" class="cta-faq">Have questions? Visit our FAQ →</a>
   </section>
-
-  <!-- ─── FAQ placeholder anchor ───────────────────────────────── -->
-  <div id="faq" style="height:1px;"></div>
 
   <!-- ─── Footer ────────────────────────────────────────────────── -->
   <footer>
@@ -1185,15 +1069,80 @@
           <li><a href="#what-we-scan">What We Scan</a></li>
           <li><a href="#quality">Quality</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
       <div class="footer-bottom">
-        <p>© 2024 Shoebox Stories. All rights reserved.</p>
+        <p>© 2026 Shoebox Stories. All rights reserved.</p>
         <a href="#">Privacy Policy</a>
       </div>
     </div>
   </footer>
+
+  <!-- Lightbox overlay -->
+  <div id="baLightbox" role="dialog" aria-modal="true" aria-label="Full size photo">
+    <button id="baLightboxClose" aria-label="Close">✕</button>
+    <img id="baLightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    /* ── Before/After carousel ─────────────────────────────────── */
+    (function () {
+      const carousel = document.getElementById('baCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('.ba-slide'));
+      const dots   = Array.from(carousel.querySelectorAll('.ba-dot'));
+      let current  = 0;
+
+      function goTo(index) {
+        slides[current].classList.remove('ba-active');
+        dots[current].classList.remove('ba-dot-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('ba-active');
+        dots[current].classList.add('ba-dot-active');
+      }
+
+      carousel.querySelector('.ba-arrow-prev').addEventListener('click', () => goTo(current - 1));
+      carousel.querySelector('.ba-arrow-next').addEventListener('click', () => goTo(current + 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
+      });
+
+      /* ── Lightbox ── */
+      const lightbox    = document.getElementById('baLightbox');
+      const lbImg       = document.getElementById('baLightboxImg');
+      const lbClose     = document.getElementById('baLightboxClose');
+
+      function openLightbox(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt;
+        lightbox.classList.add('lb-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('lb-open');
+        document.body.style.overflow = '';
+      }
+
+      // Click on any panel photo to open
+      carousel.addEventListener('click', e => {
+        const img = e.target.closest('.ba-panel img');
+        if (img) openLightbox(img.src, img.alt);
+      });
+
+      // Close on backdrop click, close button, or Escape key
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      lbClose.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
 
 </body>
 </html>

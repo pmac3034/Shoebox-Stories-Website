@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Shoebox Stories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,800;0,900;1,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ─── faq.html page-specific styles ─────────────────────── */
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .page-hero {
+      background: var(--warm-white);
+      padding: 80px 24px 64px;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(38px, 4vw, 58px);
+      letter-spacing: -0.4px; line-height: 1.1;
+      color: var(--brown); max-width: 620px;
+      margin: 0 auto 18px;
+    }
+    .page-hero p {
+      font-size: clamp(16px, 1.8vw, 18px);
+      color: var(--gray-text); max-width: 500px;
+      margin: 0 auto; line-height: 1.7;
+    }
+
+    /* ─── FAQ Section ───────────────────────────────────────── */
+    .faq-section {
+      background: var(--warm-white);
+      padding: 56px 24px 96px;
+    }
+    .faq-inner {
+      max-width: 740px; margin: 0 auto;
+    }
+
+    /* Category group */
+    .faq-category { margin-bottom: 52px; }
+    .faq-category:last-child { margin-bottom: 0; }
+
+    .faq-category-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--sand);
+    }
+    .faq-cat-icon { font-size: 22px; line-height: 1; }
+    .faq-cat-name {
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: 20px; color: var(--brown);
+    }
+
+    /* Accordion list */
+    .faq-list { display: flex; flex-direction: column; gap: 6px; }
+
+    /* FAQ item */
+    .faq-item {
+      border: 1.5px solid var(--sand);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .faq-item:has(.faq-btn[aria-expanded="true"]) {
+      border-color: var(--blush);
+      box-shadow: 0 4px 20px rgba(61,43,31,0.07);
+    }
+
+    /* Question button */
+    .faq-btn {
+      width: 100%; background: none; border: none;
+      cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center;
+      gap: 16px; padding: 18px 22px;
+      text-align: left;
+    }
+    .faq-btn:hover { background: rgba(232,213,192,0.18); }
+    .faq-btn:focus-visible {
+      outline: 2.5px solid var(--blush-dark);
+      outline-offset: -2px;
+      border-radius: 12px;
+    }
+    .faq-q-text {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 15px; color: var(--brown); line-height: 1.4; flex: 1;
+    }
+
+    /* Chevron icon */
+    .faq-icon {
+      font-size: 18px; color: var(--blush-dark);
+      flex-shrink: 0; line-height: 1;
+      display: inline-block;
+      transition: transform 0.22s ease;
+    }
+    .faq-btn[aria-expanded="true"] .faq-icon {
+      transform: rotate(90deg);
+    }
+
+    /* Answer panel */
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+    }
+    .faq-btn[aria-expanded="true"] + .faq-panel {
+      max-height: 1000px;
+    }
+    .faq-panel-body {
+      padding: 14px 22px 20px;
+      font-size: 15px; color: var(--brown-light);
+      line-height: 1.72;
+      border-top: 1.5px solid var(--sand);
+    }
+    .faq-panel-body strong { color: var(--brown); }
+    .faq-panel-body a {
+      color: var(--blue-label); text-decoration: underline;
+    }
+    .faq-panel-body a:hover { opacity: 0.75; }
+
+    /* ─── Bottom CTA ────────────────────────────────────────── */
+    .bottom-cta {
+      background: var(--sand);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(28px, 3vw, 40px);
+      color: var(--brown); margin-bottom: 16px;
+    }
+    .bottom-cta p {
+      font-size: 16px; color: var(--gray-text);
+      max-width: 440px; margin: 0 auto 36px; line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────────────────────── -->
+  <nav>
+    <a href="index.html" class="nav-logo">📦 Shoebox Stories</a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="index.html#what-we-scan">What We Scan</a></li>
+      <li><a href="index.html#quality">Quality</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+    <a href="pricing.html#calculator" class="btn-nav">Get Started</a>
+  </nav>
+
+  <!-- ─── Hero ───────────────────────────────────────────────────── -->
+  <section class="page-hero">
+    <span class="label label-blush">Help &amp; Information</span>
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know before trusting us with your printed photo collection.</p>
+  </section>
+
+  <!-- ─── FAQ Accordion ────────────────────────────────────────── -->
+  <section class="faq-section">
+    <div class="faq-inner" id="faq-container">
+      <!-- Rendered by renderFAQ() below -->
+    </div>
+  </section>
+
+  <!-- ─── Bottom CTA ────────────────────────────────────────────── -->
+  <section class="bottom-cta">
+    <span class="label label-blush">Get in touch</span>
+    <h2>Still have questions?</h2>
+    <p>Send an appointment request with your notes, and we'll follow up before confirming anything.</p>
+    <a href="pricing.html#calculator" class="btn-primary">Request an Appointment</a>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <a href="index.html" class="footer-logo">📦 Shoebox Stories</a>
+        <ul class="footer-links">
+          <li><a href="index.html#how-it-works">How It Works</a></li>
+          <li><a href="index.html#what-we-scan">What We Scan</a></li>
+          <li><a href="index.html#quality">Quality</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Shoebox Stories. All rights reserved.</p>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+  'use strict';
+
+  /* ══════════════════════════════════════════════════════════════
+   * FAQ DATA
+   *
+   * Edit questions and answers here. HTML is supported in answers.
+   * To add a category: push a new object to FAQ_DATA.
+   * To add a question: push a new { q, a } to the items array.
+   * ══════════════════════════════════════════════════════════════ */
+
+  const FAQ_DATA = [
+
+    /* ── Getting Started ─────────────────────────────────────── */
+    {
+      id:       'getting-started',
+      category: 'Getting Started',
+      icon:     '📦',
+      items: [
+        {
+          q: 'What does Shoebox Stories scan?',
+          a: 'Shoebox Stories currently scans loose printed photos. We are starting with printed photo collections so we can keep the process careful, simple, and high quality.'
+        },
+        {
+          q: 'Do you scan slides, negatives, VHS, film, or albums?',
+          a: 'Not yet. At this time, we only scan printed photos. We may add more formats later, but slides, negatives, film, VHS, and other media are not currently available.'
+        },
+        {
+          q: 'How do appointments work?',
+          a: 'You submit an appointment request with your estimated photo quantity, preferred date and time, contact information, and whether you prefer pickup or drop-off. We review the request and follow up to confirm the details before the appointment is official.'
+        },
+        {
+          q: 'Is my appointment automatically confirmed?',
+          a: 'No. Appointment requests are pending until Shoebox Stories reviews and accepts them. We will follow up before your appointment is confirmed.'
+        },
+      ]
+    },
+
+    /* ── Pricing & Payment ───────────────────────────────────── */
+    {
+      id:       'pricing-payment',
+      category: 'Pricing & Payment',
+      icon:     '💰',
+      items: [
+        {
+          q: 'How does pricing work?',
+          a: 'Pricing is based on the number of printed photos scanned. Larger orders receive a lower flat per-photo rate.'
+        },
+        {
+          q: 'What does flat volume pricing mean?',
+          a: 'It means your full order is priced at the rate for the tier it falls into — not just the photos above a threshold. For example, if your order has 700 printed photos, all 700 are priced at the 600–1,999 photo rate of $0.35 per photo.'
+        },
+        {
+          q: 'What are your photo scanning rates?',
+          a: '<strong>50–599 photos:</strong> $0.40 per photo<br><strong>600–1,999 photos:</strong> $0.35 per photo<br><strong>2,000+ photos:</strong> $0.30 per photo'
+        },
+        {
+          q: 'Is there a minimum order?',
+          a: 'Yes. There is a $40 minimum order before tax. This helps cover setup time for smaller batches.'
+        },
+        {
+          q: 'What if I have more than 5,000 photos?',
+          a: 'If you estimate more than 5,000 photos, please contact <a href="mailto:shoeboxstories.scans@gmail.com">shoeboxstories.scans@gmail.com</a> for a custom quote.'
+        },
+        {
+          q: 'Will my final price match the estimate on the website?',
+          a: 'The website estimate is based on the quantity you enter. Your final price may vary after we confirm the actual number of printed photos scanned.'
+        },
+        {
+          q: 'Do I pay online when requesting an appointment?',
+          a: 'No. No payment is collected when you submit an appointment request. Payment is due after scanning and before your digital files are delivered.'
+        },
+        {
+          q: 'What payment methods do you accept?',
+          a: 'Digital payment such as Zelle or Venmo is preferred. Cash is also accepted.'
+        },
+        {
+          q: 'Does pickup cost extra?',
+          a: 'Yes. Pickup appointments include a $20 pickup fee. Drop-off details are coordinated privately after your appointment request is accepted.'
+        },
+        {
+          q: 'Is there a fee for photos in albums?',
+          a: 'Customers are encouraged to remove photos from albums before pickup or drop-off. If Shoebox Stories needs to remove photos from albums, a $25 fee per album will be added.'
+        },
+        {
+          q: 'Can I get my photos on a USB drive?',
+          a: 'Yes. Digital delivery is provided through a download link, and a USB drive can be added for an additional $25.'
+        },
+      ]
+    },
+
+    /* ── Pickup & Drop-Off ───────────────────────────────────── */
+    {
+      id:       'pickup-dropoff',
+      category: 'Pickup & Drop-Off',
+      icon:     '📍',
+      items: [
+        {
+          q: 'What areas do you serve?',
+          a: 'Shoebox Stories currently serves local DFW customers, especially those within approximately 30 minutes of the 75034 zip code (Frisco, TX).'
+        },
+        {
+          q: 'What if I am outside the service area?',
+          a: 'If you are more than approximately 30 minutes from 75034, please mention that in your appointment request. We will let you know whether pickup or drop-off can be arranged.'
+        },
+        {
+          q: 'Do you offer mail-in service?',
+          a: 'No. Shoebox Stories does not offer shipping or mail-in service right now. We currently offer local drop-off and pickup only.'
+        },
+        {
+          q: 'How long does pickup or drop-off take?',
+          a: 'Pickup and drop-off appointments are designed to be quick, usually around 15 minutes.'
+        },
+        {
+          q: 'Can I book same-day?',
+          a: 'No. Please request appointments at least 24 hours in advance.'
+        },
+        {
+          q: 'Where do I drop off my photos?',
+          a: 'Drop-off location details are arranged privately after your appointment request is accepted.'
+        },
+      ]
+    },
+
+    /* ── Preparing Your Photos ───────────────────────────────── */
+    {
+      id:       'preparing-photos',
+      category: 'Preparing Your Photos',
+      icon:     '🗂️',
+      items: [
+        {
+          q: 'How should I prepare my photos?',
+          a: 'Keep photos grouped the way you want them organized. Envelopes, bags, or small boxes with clear labels are helpful. Avoid placing sticky notes directly on photo surfaces.'
+        },
+        {
+          q: 'Can you organize my digital photos into folders?',
+          a: 'Yes, if your physical photo containers are clearly labeled before pickup or drop-off. Photos in unlabeled containers will not be organized into separate digital folders.'
+        },
+        {
+          q: 'Can photos stay in albums?',
+          a: 'We prefer that customers remove photos from albums before pickup or drop-off. If Shoebox Stories needs to remove photos from albums, a $25 fee per album will be added.'
+        },
+        {
+          q: 'Do you scan the backs of photos?',
+          a: 'Yes. Back-of-photo scanning is included free when there is writing, dates, names, or other meaningful information on the back.'
+        },
+        {
+          q: 'What size photos can you scan?',
+          a: 'We can scan printed photos up to 8.5 inches by 14 inches.'
+        },
+        {
+          q: 'Can you scan fragile, curled, torn, or damaged photos?',
+          a: 'We can scan many fragile or damaged printed photos, but we are not liable for any further damage sustained during scanning. If a photo is especially delicate, please mention it in your appointment request.'
+        },
+      ]
+    },
+
+    /* ── Scanning Quality & Restoration ─────────────────────── */
+    {
+      id:       'scanning-quality',
+      category: 'Scanning Quality & Restoration',
+      icon:     '📸',
+      items: [
+        {
+          q: 'What scanner do you use?',
+          a: 'Shoebox Stories uses a ScanSnap iX2500 for printed photo scanning.'
+        },
+        {
+          q: 'What resolution do you scan at?',
+          a: 'Color photos are scanned at 300 DPI. Black-and-white photos are scanned at 600 DPI.'
+        },
+        {
+          q: 'Do you enhance the photos?',
+          a: 'Yes. We can apply basic improvements such as cropping, rotation, color correction, dust reduction, and sharpening as part of the scanning process.'
+        },
+        {
+          q: 'Do you offer manual photo restoration?',
+          a: 'Yes. Manual restoration is available by quote only and depends on photo size and the level of restoration needed. Please contact <a href="mailto:shoeboxstories.scans@gmail.com">shoeboxstories.scans@gmail.com</a> for a restoration quote.'
+        },
+      ]
+    },
+
+    /* ── Delivery, Originals & Privacy ──────────────────────── */
+    {
+      id:       'delivery-privacy',
+      category: 'Delivery, Originals & Privacy',
+      icon:     '🔒',
+      items: [
+        {
+          q: 'How will I receive my digital photos?',
+          a: 'Digital photos are delivered through a download link. A USB drive can also be added for an additional $25.'
+        },
+        {
+          q: 'How long does scanning take?',
+          a: 'Small and medium orders are typically completed within up to two weeks. Large orders depend on the size of the collection and will be discussed when your appointment request is reviewed.'
+        },
+        {
+          q: 'Do I get my original photos back?',
+          a: 'Yes. Your original photos are returned to you after scanning.'
+        },
+        {
+          q: 'Are my photos handled carefully?',
+          a: 'Yes. We know these photos are irreplaceable, and each order is handled carefully throughout the scanning process.'
+        },
+        {
+          q: 'How long do you keep digital copies?',
+          a: 'Shoebox Stories keeps digital copies for up to 60 days after delivery in case there is an issue accessing or downloading your files.'
+        },
+        {
+          q: 'What happens after 60 days?',
+          a: 'After the 60-day retention period, digital copies may be deleted. Download and back up your files as soon as possible after delivery.'
+        },
+      ]
+    },
+
+  ];
+
+
+  /* ══════════════════════════════════════════════════════════════
+   * RENDER FAQ
+   * ══════════════════════════════════════════════════════════════ */
+
+  function renderFAQ() {
+    const container = document.getElementById('faq-container');
+
+    FAQ_DATA.forEach((section, si) => {
+      const catEl      = document.createElement('div');
+      catEl.className  = 'faq-category';
+      catEl.id         = section.id;
+
+      // Category header
+      const header     = document.createElement('div');
+      header.className = 'faq-category-header';
+      header.innerHTML = `
+        <span class="faq-cat-icon" aria-hidden="true">${section.icon}</span>
+        <span class="faq-cat-name">${section.category}</span>
+      `;
+      catEl.appendChild(header);
+
+      // Accordion list
+      const list       = document.createElement('div');
+      list.className   = 'faq-list';
+      list.setAttribute('role', 'list');
+
+      section.items.forEach((item, ii) => {
+        const btnId   = `faq-btn-${si}-${ii}`;
+        const panelId = `faq-panel-${si}-${ii}`;
+
+        const itemEl      = document.createElement('div');
+        itemEl.className  = 'faq-item';
+        itemEl.setAttribute('role', 'listitem');
+
+        // Question button
+        const btn         = document.createElement('button');
+        btn.type          = 'button';
+        btn.id            = btnId;
+        btn.className     = 'faq-btn';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', panelId);
+        btn.innerHTML     = `
+          <span class="faq-q-text">${item.q}</span>
+          <span class="faq-icon" aria-hidden="true">›</span>
+        `;
+
+        // Answer panel
+        const panel       = document.createElement('div');
+        panel.id          = panelId;
+        panel.className   = 'faq-panel';
+        panel.setAttribute('role', 'region');
+        panel.setAttribute('aria-labelledby', btnId);
+
+        const body        = document.createElement('div');
+        body.className    = 'faq-panel-body';
+        body.innerHTML    = item.a;
+
+        panel.appendChild(body);
+        itemEl.appendChild(btn);
+        itemEl.appendChild(panel);
+        list.appendChild(itemEl);
+
+        btn.addEventListener('click', () => toggleItem(btn));
+      });
+
+      catEl.appendChild(list);
+      container.appendChild(catEl);
+    });
+  }
+
+
+  /* ══════════════════════════════════════════════════════════════
+   * ACCORDION TOGGLE — one item open at a time
+   * ══════════════════════════════════════════════════════════════ */
+
+  function toggleItem(btn) {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    // Close all open items
+    document.querySelectorAll('.faq-btn[aria-expanded="true"]').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+    });
+
+    // Open the clicked item if it was closed
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+
+  /* ══════════════════════════════════════════════════════════════
+   * INIT
+   * ══════════════════════════════════════════════════════════════ */
+
+  renderFAQ();
+
+  </script>
+
+</body>
+</html>
