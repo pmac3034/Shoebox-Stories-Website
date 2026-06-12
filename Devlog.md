@@ -1,3 +1,6 @@
+6/11/26: V1.0.0 Deploy Cloudflare 
+
+
 Dev Plans:
 
 Future Sections:
