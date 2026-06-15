@@ -5,6 +5,7 @@ Dev Plans:
 
 Future Sections:
 - restorations section
+- Why digitize? section that explains use case to older audience (sharing, backup, etc)
 - what we scan section (when more types added)
 
 #Scheduling and backend 
