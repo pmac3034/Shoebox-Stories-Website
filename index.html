@@ -191,6 +191,79 @@
       .mission-inner { grid-template-columns: 1fr; gap: 40px; }
     }
 
+    /* ─── Why Digitize ──────────────────────────────────────────── */
+    #why-digitize {
+      background: var(--sand);
+      padding: 100px 24px;
+      text-align: center;
+    }
+
+    #why-digitize h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 3.5vw, 52px);
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    #why-digitize > .section-sub {
+      color: var(--brown-light);
+      font-size: 17px;
+      max-width: 560px;
+      margin: 0 auto 56px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .why-card {
+      background: var(--warm-white);
+      border-radius: 22px;
+      padding: 40px 32px;
+      box-shadow: 0 8px 32px rgba(61,43,31,0.10);
+      text-align: left;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(61,43,31,0.16);
+    }
+
+    .why-card .why-emoji {
+      font-size: 44px;
+      line-height: 1;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .why-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 21px;
+      color: var(--brown);
+      margin-bottom: 12px;
+    }
+
+    .why-card p {
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 860px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── How It Works ──────────────────────────────────────────── */
     #how-it-works {
       background: var(--warm-white);
@@ -756,7 +829,7 @@
     <a href="#hero" class="nav-logo">Shoebox Stories</a>
     <ul class="nav-links">
       <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#what-we-scan">What We Scan</a></li>
+      <li><a href="#why-digitize">Why Digitize?</a></li>
       <li><a href="#quality">Quality</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="faq.html">FAQ</a></li>
@@ -776,7 +849,7 @@
       <div class="frame"><img src="landing_page_imgs/4.jpg"  alt="Family photo" /></div>
     </div>
     <div class="hero-btns">
-      <a href="pricing.html#calculator" class="btn-primary">Get An Estimate</a>
+      <a href="pricing.html#calculator" class="btn-primary">Get Started</a>
       <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
    
@@ -814,6 +887,45 @@
       </div>
       <div>
         <p class="mission-quote">"What if something happened to those photos?" — that fear ends today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Why Digitize ──────────────────────────────────────────── -->
+  <section id="why-digitize">
+    <span class="label label-blush">Why Digitize</span>
+    <h2>Why Digitize Your Family Photos?</h2>
+    <p class="section-sub">Once your photos are digital, they stop sitting in a box — and start being part of everyday life again.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-emoji">📤</span>
+        <h3>Share With the Whole Family</h3>
+        <p>Send a lifetime of photos to your kids, siblings, and grandkids with a single link or a shared album. No more passing around the one physical copy.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-emoji">📺</span>
+        <h3>See Them Every Day</h3>
+        <p>Play your digitized photos on a smart TV, a digital picture frame, or a smart display like Google Home. Instead of sitting in a closet, your memories greet you throughout the day.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-emoji">🛡️</span>
+        <h3>Safe From Fire, Flood &amp; Time</h3>
+        <p>Printed photos fade, yellow, and can vanish in a single accident. Digital copies are backed up and stay crisp forever — your memories outlive the paper they were printed on.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-emoji">🔍</span>
+        <h3>Find Any Photo in Seconds</h3>
+        <p>No more digging through shoeboxes. Your scans arrive neatly organized, so you can pull up that one vacation or birthday in moments.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-emoji">👨‍👩‍👧‍👦</span>
+        <h3>A Gift for Generations</h3>
+        <p>Digital memories are effortless to copy and pass down. Every child and grandchild can have the complete family album — not just whoever ended up with the box.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-emoji">📦</span>
+        <h3>Reclaim Your Space</h3>
+        <p>Once your photos are safely digitized, you can tuck the bulky albums and boxes away — keeping every memory without the clutter.</p>
       </div>
     </div>
   </section>
@@ -1067,7 +1179,7 @@
         <a href="#hero" class="footer-logo">📦 Shoebox Stories</a>
         <ul class="footer-links">
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#what-we-scan">What We Scan</a></li>
+          <li><a href="#why-digitize">Why Digitize?</a></li>
           <li><a href="#quality">Quality</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="faq.html">FAQ</a></li>

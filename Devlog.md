@@ -15,7 +15,7 @@ For our MVP, build it in phases:
 
 ~~Phase 1: Frontend only with mock availability and console logging.~~
 ~~Phase 2: Add backend/serverless endpoint that creates pending Google Calendar events.~~
-Phase 3: Add Google Sheets row + email notifications.
+Phase 3: Add Google Sheets row + ~~email notifications.~~
   TODO: After a successful events.insert, send a separate transactional email to
   shoeboxstories.scans@gmail.com (and optionally to the customer) with the full
   appointment details. Do NOT rely solely on the Google Calendar invite email

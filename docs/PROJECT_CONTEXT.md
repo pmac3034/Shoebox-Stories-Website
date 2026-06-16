@@ -5,7 +5,7 @@
 Shoebox Stories is a **photo scanning service** based in the **Dallas–Fort Worth (DFW)** area.
 Customers bring (or will eventually mail) physical photos, and receive high-resolution digital scans organized and returned to them.
 
-The business is currently **pre-launch / in the build phase**. The website is being developed before the first paying customers are onboarded.
+The business is currently **Initial Launch Phase**. The website is being developed before the first paying customers are onboarded.
 
 ---
 
@@ -74,10 +74,12 @@ Subtotal = qty × rate. If subtotal < $40, a minimum-order adjustment brings it 
 
 ## Appointment Request Flow
 
-1. **Customer** visits `/schedule`, uses the slider to enter photo quantity, picks a date and time from the calendar, fills out the contact form, and submits.
-2. **Frontend** (`assets/js/schedule.js`) POSTs a JSON payload to `/api/appointment-request`.
-3. **Cloudflare Pages Function** (`functions/api/appointment-request.js`) validates the request, authenticates with Google via a service-account JWT, and inserts a **TENTATIVE** event on the business Google Calendar (`shoeboxstories.scans@gmail.com`).
-4. **Customer** receives a confirmation number on the page. The owner sees the tentative event in Google Calendar and confirms or declines manually.
+1. **Customer** clicks **Get Started** / **Start Your Order** on the landing page (`index.html`), which links to `pricing.html#calculator`.
+2. On `/pricing`, the customer uses the calculator to enter photo quantity and appointment options to see an estimate, then clicks **Schedule Now**, which links to `/schedule` with the estimate passed along as URL params (`schedule.html?quantity=...&type=...&albums=...`).
+3. On `/schedule`, the customer picks a date and time from the calendar, fills out the contact form, and submits.
+4. **Frontend** (`assets/js/schedule.js`) POSTs a JSON payload to `/api/appointment-request`.
+5. **Cloudflare Pages Function** (`functions/api/appointment-request.js`) validates the request, authenticates with Google via a service-account JWT, and inserts a **TENTATIVE** event on the business Google Calendar (`shoeboxstories.scans@gmail.com`).
+6. **Customer** receives a confirmation number on the page. The owner sees the tentative event in Google Calendar and confirms or declines manually.
 
 > The calendar is currently **Phase 1 mock** — available slots are computed client-side from `AVAILABLE_TIME_SLOTS` in `config.js` without a live availability check.
 
