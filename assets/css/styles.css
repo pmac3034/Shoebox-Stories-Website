@@ -26,6 +26,75 @@
   --off-white:    #FFF5EE;
   --error-red:    #d97b6c;
   --shadow-warm:  rgba(61,43,31,0.12);
+   /* 
+    DESIGN SYSTEM COLOR EXTENSIONS
+    These colors expand the existing warm, nostalgic, heirloom-inspired palette.
+    Use them sparingly as supporting accents, soft backgrounds, borders, and section-level variation.
+  */
+
+  /* 
+    Sage
+    Calm, natural, archival, and trustworthy.
+    Best used for preservation-focused content, gentle callouts, icon backgrounds,
+    process cards, or sections about keeping family memories safe long-term.
+  */
+  --sage: #AFC1A3;
+
+  /* 
+    Sage Light
+    Very soft green-tinted background.
+    Best used for subtle section backgrounds, card fills, hover states,
+    or low-emphasis callouts where blush/sand would feel too warm.
+  */
+  --sage-light: #DCE6D4;
+
+  /* 
+    Buttercream
+    Warm, sunny, and nostalgic without becoming bright yellow.
+    Best used for soft highlights, small decorative accents, pricing emphasis,
+    testimonial details, or “warm memory” moments.
+  */
+  --buttercream: #F6E3B4;
+
+  /* 
+    Aged Paper
+    A soft paper-like neutral that feels warmer and more vintage than plain white.
+    Best used for page sections, cards, FAQ blocks, quote/testimonial backgrounds,
+    and areas meant to feel like old photo albums or keepsake paper.
+  */
+  --aged-paper: #F3E7D3;
+
+  /* 
+    Dusty Rose
+    A muted romantic pink that deepens the existing blush palette.
+    Best used for secondary accents, soft buttons, testimonial elements,
+    decorative labels, or warmer emotional moments.
+  */
+  --dusty-rose: #D9A09A;
+
+  /* 
+    Mauve
+    A deeper, more mature rose-brown accent.
+    Best used for hover states, small headings, emphasized text,
+    borders on blush-toned components, or elevated accent details.
+  */
+  --mauve: #A97978;
+
+  /* 
+    Slate Blue
+    A grounded muted blue that extends the powder-blue family.
+    Best used for informational labels, links, icons, secondary buttons,
+    or areas where the design needs a cooler, calmer contrast.
+  */
+  --slate-blue: #6F8799;
+
+  /* 
+    Cream Border
+    Soft warm border color.
+    Best used for card outlines, dividers, form inputs, FAQ borders,
+    image frames, and subtle separation without harsh gray.
+  */
+  --cream-border: #EADFD5;
 }
 
 /* ─── Reset & Base ──────────────────────────────────────────── */
