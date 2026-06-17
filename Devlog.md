@@ -24,3 +24,5 @@ Phase 3: Add Google Sheets row + ~~email notifications.~~
   (Cloudflare Email Workers, SendGrid, Mailgun, etc.) so the owner always gets a
   reliable, formatted notification regardless of Calendar behaviour.
 Phase 4: Add a tiny admin approval flow only if manual calendar editing gets annoying.
+
+

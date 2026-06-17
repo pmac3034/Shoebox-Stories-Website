@@ -12,6 +12,10 @@
 
 'use strict';
 
+/* Shared inline icons (Streamline Pixel) for appointment-type labels */
+const ICON_HOUSE = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32" style="vertical-align:-0.15em;"><path fill="currentColor" d="M30.48 18.29h-1.53v-1.52h-1.52v-1.53h-1.52V0H10.67v9.15H9.14V6.1H6.1V1.53H4.57V6.1H1.52v3.05H0V32h30.48v-9.14H32v-3.05h-1.52ZM3.05 7.62h4.57v1.53H3.05Zm7.62 12.19H9.14v3.05h1.53v7.62H1.52V10.67h9.15Zm1.52-18.28h12.19V12.2h-1.52v-1.53h-1.53V9.15h-1.52v1.52h-1.52v1.53h-1.53v1.52h-1.52v1.52h-1.52v1.53h-1.53Zm16.76 28.95h-4.57v-6.09h-1.52v6.09h-4.57v-1.52h1.52v-1.53h-1.52v-3.04h-1.53v6.09h-4.57V19.81h1.53v-1.52h1.52v-1.52h1.52v-1.53h1.53v-1.52h1.52V12.2h1.52v1.52h1.53v1.52h1.52v1.53h1.53v1.52h1.52v1.52h1.52Z"/><path fill="currentColor" d="M15.24 19.81h10.67v1.53H15.24Zm3.05 3.05h4.57v1.53h-4.57Zm1.52-19.81h3.05V6.1h-3.05Zm-6.09 4.57h3.04v3.05h-3.04Zm0-4.57h3.04V6.1h-3.04ZM4.57 25.91h3.05v3.05H4.57Zm0-6.1h3.05v3.05H4.57Zm0-6.09h3.05v3.05H4.57Z"/></svg>';
+const ICON_CAR   = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32" style="vertical-align:-0.15em;"><path fill="currentColor" d="M30.47 12.19h-1.52v-1.53h-1.52V9.14H25.9v3.05h-1.52v1.52h-1.52V9.14h3.04V7.62h-7.62V6.09h-1.52v10.67H1.52V6.09H0v16.76h1.52v-4.57h15.24v4.57h-6.1v-1.52H9.14v4.57h1.52v-1.52h9.15v1.52h1.52v-4.57h-1.52v1.52h-1.53V9.14h3.05v6.1h1.53v1.52h7.61v6.09H32v-9.14h-1.53z"/><path fill="currentColor" d="M27.43 21.33H25.9v4.57h1.53v-1.52h3.04v-1.53h-3.04zm-6.1 4.57h4.57v1.53h-4.57Zm1.53-3.05h1.52v1.53h-1.52Zm-1.53-3.04h4.57v1.52h-4.57Zm-16.76 0h4.57v1.52H4.57Zm0 6.09h4.57v1.53H4.57Zm1.52-3.05h1.53v1.53H6.09ZM3.05 12.19h12.19v1.52H3.05Zm0-3.05h12.19v1.52H3.05Zm1.52 12.19H3.05v1.52H1.52v1.53h1.53v1.52h1.52zM1.52 4.57h15.24v1.52H1.52Z"/></svg>';
+
 
 /* ══════════════════════════════════════════════════════════════
  * API ENDPOINT CONTRACTS
@@ -481,8 +485,8 @@ function updateSelectionSummary() {
     selectionSummary.classList.remove('hidden');
     selectionMissing.style.display = 'none';
     sumDateTime.textContent = formatDateLong(state.selectedDate) + ' at ' + formatTime12(state.selectedTime);
-    sumType.textContent = state.appointmentType
-      ? (state.appointmentType === 'pickup' ? '🚗 Pickup' : '🏠 Drop-off')
+    sumType.innerHTML = state.appointmentType
+      ? (state.appointmentType === 'pickup' ? ICON_CAR + ' Pickup' : ICON_HOUSE + ' Drop-off')
       : 'Type not selected';
   } else {
     selectionSummary.classList.add('hidden');
@@ -599,7 +603,7 @@ function showConfirmation(requestData) {
   const items = [
     { label: 'Date',        value: requestData.appointment.dateDisplay },
     { label: 'Time',        value: requestData.appointment.timeDisplay },
-    { label: 'Type',        value: requestData.appointment.type === 'pickup' ? '🚗 Pickup' : '🏠 Drop-off' },
+    { label: 'Type',        value: requestData.appointment.type === 'pickup' ? ICON_CAR + ' Pickup' : ICON_HOUSE + ' Drop-off' },
     { label: 'Est. Photos', value: requestData.estimate.qty.toLocaleString() },
     { label: 'Price Tier',  value: requestData.estimate.tier },
     { label: 'Est. Total',  value: fmt(requestData.estimate.total) },
@@ -729,10 +733,10 @@ function renderOrderSummary({ qty, type, albums }) {
   }
 
   if (includePickup) {
-    rows.push({ label: 'Appointment type', val: '🚗 Pickup', badge: false });
+    rows.push({ label: 'Appointment type', val: ICON_CAR + ' Pickup', badge: false });
     rows.push({ label: 'Pickup fee',       val: '+' + fmt(e.pickupFee), badge: false });
   } else {
-    rows.push({ label: 'Appointment type', val: '🏠 Drop-off', badge: false });
+    rows.push({ label: 'Appointment type', val: ICON_HOUSE + ' Drop-off', badge: false });
   }
 
   if (albums > 0) {
@@ -801,8 +805,8 @@ function readOrderFromURL() {
     orderSummaryCard.classList.remove('hidden');
 
     // Show locked appt type badge; hide radio group
-    const typeLabel = type === 'pickup' ? '🚗 Pickup (+$20 fee)' : '🏠 Drop-off';
-    lockedApptLabel.textContent = typeLabel;
+    const typeLabel = type === 'pickup' ? ICON_CAR + ' Pickup (+$20 fee)' : ICON_HOUSE + ' Drop-off';
+    lockedApptLabel.innerHTML = typeLabel;
     const editURL = buildEditOrderURL(qty, type, albums);
     lockedApptEdit.href = editURL;
     lockedApptType.classList.add('visible');
