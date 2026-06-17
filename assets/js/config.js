@@ -14,6 +14,7 @@ const TAX_RATE           = 0.0825;   // 8.25% — update when local tax rate cha
 const PICKUP_FEE         = 20.00;    // flat fee added for pickup appointments
 const MINIMUM_ORDER      = 40.00;    // minimum billable amount before tax
 const ALBUM_REMOVAL_FEE  = 25.00;    // per-album fee when photos need to be removed before scanning
+const USB_DRIVE_FEE      = 25.00;    // flat fee for USB drive delivery of digitized files
 
 /* ── Calculator UI ───────────────────────────────────────────── */
 const SLIDER_MIN  = 50;     // minimum photos shown on slider

@@ -279,12 +279,12 @@ function generateRequestNumber() {
  * See API_CONTEXT.md for the full field reference.
  *
  * @param {{ name, email, phone, contactMethod, appointmentType,
- *           pickupAddress, dateKey, time, qty, albumCount, includePickup, notes }} params
+ *           pickupAddress, dateKey, time, qty, albumCount, includePickup, includeUsb, notes }} params
  * @returns {Object}
  */
 function buildRequest({ name, email, phone, contactMethod, appointmentType,
-                        pickupAddress, dateKey, time, qty, albumCount, includePickup, notes }) {
-  const estimate      = calculateEstimate(qty, includePickup, albumCount || 0);
+                        pickupAddress, dateKey, time, qty, albumCount, includePickup, includeUsb, notes }) {
+  const estimate      = calculateEstimate(qty, includePickup, albumCount || 0, includeUsb);
   const requestNumber = generateRequestNumber();
 
   return {
@@ -317,6 +317,7 @@ function buildRequest({ name, email, phone, contactMethod, appointmentType,
       pickupFee:     +estimate.pickupFee.toFixed(2),
       albumCount:    estimate.albumCount,
       albumFee:      +estimate.albumFee.toFixed(2),
+      usbFee:        +estimate.usbFee.toFixed(2),
       taxRate:       TAX_RATE,
       tax:           +estimate.tax.toFixed(2),
       total:         +estimate.total.toFixed(2),
@@ -333,6 +334,7 @@ function buildRequest({ name, email, phone, contactMethod, appointmentType,
 const state = {
   qty:             DEFAULT_QTY,
   albumCount:      0,         // number of albums needing removal
+  includeUsb:      false,     // whether USB drive delivery is selected
   appointmentType: null,      // 'dropoff' | 'pickup'
   lockedMode:      false,     // true when order was passed via URL params
   selectedDate:    null,      // Date object
@@ -375,6 +377,8 @@ const selectionMissing   = document.getElementById('selection-missing');
 const sumDateTime        = document.getElementById('sum-date-time');
 const sumType            = document.getElementById('sum-type');
 const fPickupAddress     = document.getElementById('f-pickup-address');
+const fUsb               = document.getElementById('f-usb');
+const usbAddonRow        = document.getElementById('usb-addon-row');
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -615,6 +619,9 @@ function showConfirmation(requestData) {
       value: `${requestData.estimate.albumCount} album${plural} (+${fmt(requestData.estimate.albumFee)})`,
     });
   }
+  if (requestData.estimate.usbFee > 0) {
+    items.splice(5, 0, { label: 'USB Drive', value: `+${fmt(requestData.estimate.usbFee)}` });
+  }
 
   grid.innerHTML = items.map(item => `
     <div class="confirm-detail-item">
@@ -642,6 +649,14 @@ document.querySelectorAll('input[name="appointment-type"]').forEach(radio => {
   radio.addEventListener('change', () => {
     if (radio.checked) onAppointmentTypeChange(radio.value);
   });
+});
+
+fUsb.addEventListener('change', () => {
+  state.includeUsb = fUsb.checked;
+  usbAddonRow.classList.toggle('checked', fUsb.checked);
+  if (state.lockedMode) {
+    renderOrderSummary({ qty: state.qty, type: state.appointmentType, albums: state.albumCount, usb: state.includeUsb });
+  }
 });
 
 document.querySelectorAll('input[name="contact-method"]').forEach(radio => {
@@ -678,6 +693,7 @@ appointmentForm.addEventListener('submit', async (e) => {
     qty:             state.qty,
     albumCount:      state.albumCount,
     includePickup,
+    includeUsb:      state.includeUsb,
     notes,
   });
 
@@ -706,8 +722,8 @@ appointmentForm.addEventListener('submit', async (e) => {
  * Builds the "edit order" back-link URL.
  * Points to pricing.html#calculator with the current params pre-filled.
  */
-function buildEditOrderURL(qty, type, albums) {
-  return `pricing.html?quantity=${qty}&type=${type}&albums=${albums}#calculator`;
+function buildEditOrderURL(qty, type, albums, usb) {
+  return `pricing.html?quantity=${qty}&type=${type}&albums=${albums}&usb=${usb ? '1' : '0'}#calculator`;
 }
 
 /**
@@ -715,9 +731,9 @@ function buildEditOrderURL(qty, type, albums) {
  * Called once on page load when URL params are present.
  * @param {{ qty: number, type: string, albums: number }} params
  */
-function renderOrderSummary({ qty, type, albums }) {
+function renderOrderSummary({ qty, type, albums, usb }) {
   const includePickup = type === 'pickup';
-  const e = calculateEstimate(qty, includePickup, albums);
+  const e = calculateEstimate(qty, includePickup, albums, usb);
 
   // Build rows HTML
   const rows = [];
@@ -744,6 +760,10 @@ function renderOrderSummary({ qty, type, albums }) {
     rows.push({ label: `Album removal (${albums} album${plural})`, val: '+' + fmt(e.albumFee), badge: false });
   }
 
+  if (usb) {
+    rows.push({ label: 'USB drive delivery', val: '+' + fmt(e.usbFee), badge: false });
+  }
+
   rows.push({ label: `Tax (${(TAX_RATE * 100).toFixed(2).replace(/\.?0+$/, '')}%)`, val: fmt(e.tax), badge: false });
 
   orderSummaryRows.innerHTML = rows.map(r => `
@@ -758,7 +778,7 @@ function renderOrderSummary({ qty, type, albums }) {
   orderSummaryTotal.textContent = fmt(e.total);
 
   // Set edit link
-  orderEditLink.href = buildEditOrderURL(qty, type, albums);
+  orderEditLink.href = buildEditOrderURL(qty, type, albums, usb);
 }
 
 
@@ -786,9 +806,11 @@ function readOrderFromURL() {
   const rawQty  = params.get('quantity');
   const rawType = params.get('type');
   const rawAlbums = params.get('albums');
+  const rawUsb    = params.get('usb');
 
   const qty    = parseInt(rawQty, 10);
   const albums = parseInt(rawAlbums, 10) || 0;
+  const usb    = rawUsb === '1';
   const type   = (rawType === 'pickup' || rawType === 'dropoff') ? rawType : null;
 
   const hasValidParams = !isNaN(qty) && qty >= SLIDER_MIN && type !== null;
@@ -798,19 +820,26 @@ function readOrderFromURL() {
     state.lockedMode    = true;
     state.qty           = qty <= LARGE_ORDER_THRESHOLD ? qty : qty;  // allow over-threshold in summary
     state.albumCount    = albums;
+    state.includeUsb    = usb;
     state.appointmentType = type;
 
     // Render order summary card
-    renderOrderSummary({ qty, type, albums });
+    renderOrderSummary({ qty, type, albums, usb });
     orderSummaryCard.classList.remove('hidden');
 
     // Show locked appt type badge; hide radio group
     const typeLabel = type === 'pickup' ? ICON_CAR + ' Pickup (+$20 fee)' : ICON_HOUSE + ' Drop-off';
     lockedApptLabel.innerHTML = typeLabel;
-    const editURL = buildEditOrderURL(qty, type, albums);
+    const editURL = buildEditOrderURL(qty, type, albums, usb);
     lockedApptEdit.href = editURL;
     lockedApptType.classList.add('visible');
     if (apptTypeRadioGroup) apptTypeRadioGroup.style.display = 'none';
+
+    // Pre-set USB checkbox from URL param
+    if (usb) {
+      fUsb.checked = true;
+      usbAddonRow.classList.add('checked');
+    }
 
     // Pre-set pickup/dropoff conditional fields
     onAppointmentTypeChange(type);

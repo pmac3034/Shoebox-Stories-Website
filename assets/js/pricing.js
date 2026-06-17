@@ -33,17 +33,18 @@ function getTier(qty) {
  *   taxable: number, tax: number, total: number
  * }}
  */
-function calculateEstimate(qty, includePickup = false, albumCount = 0) {
+function calculateEstimate(qty, includePickup = false, albumCount = 0, includeUsb = false) {
   const tier        = getTier(qty);
   const rawSubtotal = qty * tier.rate;
   const minAdj      = Math.max(0, MINIMUM_ORDER - rawSubtotal);
   const svcSubtotal = rawSubtotal + minAdj;   // = Math.max(rawSubtotal, MINIMUM_ORDER)
   const pickupFee   = includePickup ? PICKUP_FEE : 0;
   const albumFee    = albumCount * ALBUM_REMOVAL_FEE;
-  const taxable     = svcSubtotal + pickupFee + albumFee;
+  const usbFee      = includeUsb ? USB_DRIVE_FEE : 0;
+  const taxable     = svcSubtotal + pickupFee + albumFee + usbFee;
   const tax         = taxable * TAX_RATE;
   const total       = taxable + tax;
-  return { qty, tier, rawSubtotal, minAdj, svcSubtotal, pickupFee, albumCount, albumFee, taxable, tax, total };
+  return { qty, tier, rawSubtotal, minAdj, svcSubtotal, pickupFee, albumCount, albumFee, usbFee, taxable, tax, total };
 }
 
 /**
