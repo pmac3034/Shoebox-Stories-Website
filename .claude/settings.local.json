@@ -4,7 +4,10 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(where python *)",
       "Bash(where python3 *)",
-      "Bash(where node *)"
+      "Bash(where node *)",
+      "mcp__bfe4b1d5-4f3f-4018-bc19-e9344fe13a1c__list-brand-kits",
+      "mcp__bfe4b1d5-4f3f-4018-bc19-e9344fe13a1c__generate-design",
+      "mcp__bfe4b1d5-4f3f-4018-bc19-e9344fe13a1c__create-design-from-candidate"
     ]
   }
 }
