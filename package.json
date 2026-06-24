@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "wrangler pages dev .",
-  "build": "echo \"No build step needed\""
-},
+    "dev": "wrangler pages dev .",
+    "build": "echo \"No build step needed\""
+  },
   "devDependencies": {
-    "wrangler": "^4.100.0"
+    "wrangler": "^4.104.0"
   },
   "repository": {
     "type": "git",

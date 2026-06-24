@@ -771,7 +771,7 @@ function renderOrderSummary({ qty, type, albums, usb }) {
       <span class="osr-label">${r.label}</span>
       ${r.badge
         ? `<span class="osr-badge">${r.val}</span>`
-        : `<span class="osr-val" style="${r.muted ? 'color:var(--coral-label)' : ''}">${r.val}</span>`}
+        : `<span class="osr-val" style="${r.muted ? 'color:var(--blue-label)' : ''}">${r.val}</span>`}
     </div>
   `).join('');
 

@@ -21,7 +21,8 @@
   --dark-navy:    #2C3E50;
   --footer-bg:    #2A1F18;
   --gray-text:    #7A6B62;
-  --coral-label:  #C97A66;
+  --coral-label:  #4A87AD;
+  --soft-blue:    #8bb9e3;
   --blue-label:   #4A87AD;
   --off-white:    #FFF5EE;
   --error-red:    #d97b6c;
@@ -265,7 +266,7 @@ nav {
   margin-bottom: 20px;
 }
 
-.label-blush { background: var(--blush);        color: var(--coral-label); }
+.label-blush { background: var(--blush);        color: var(--brown); }
 .label-blue  { background: var(--powder-blue);  color: var(--blue-label);  }
 .label-dark  { background: rgba(255,255,255,0.12); color: var(--off-white); border: 1px solid rgba(255,255,255,0.2); }
 .label-navy  { background: rgba(184,212,232,0.18); color: var(--powder-blue); }
@@ -327,7 +328,7 @@ input[type="range"]::-moz-range-thumb {
 /* ─── Footer ────────────────────────────────────────────────── */
 footer {
   background: var(--footer-bg);
-  padding: 56px 60px 40px;
+  padding: 28px 60px 20px;
 }
 
 .footer-inner {
@@ -341,15 +342,23 @@ footer {
   align-items: flex-start;
   gap: 40px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .footer-logo {
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 22px;
+  font-size: 16px;
   color: var(--off-white);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo img {
+  height: 32px !important;
+  width: auto !important;
 }
 
 .footer-links {
@@ -367,6 +376,47 @@ footer {
 }
 
 .footer-links a:hover { color: var(--off-white); }
+
+.footer-contact {
+  padding: 20px 0 18px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+
+.footer-contact .label {
+  margin-bottom: 24px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--off-white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-link:hover { color: var(--blush); }
+
+.contact-icon {
+  font-size: 22px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  transition: font-variation-settings 0.25s ease;
+}
+
+.contact-link:hover .contact-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
